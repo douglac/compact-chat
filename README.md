@@ -66,19 +66,45 @@ It also handles **resuming** — paste a compact into a new chat and the agent v
 
 ## Install
 
-### Cursor — via `npx skills` (recommended)
+### One-liner (works for both Cursor and Claude Code)
 
 ```bash
 npx skills add douglac/compact-chat
 ```
 
-### Cursor — via Settings (native)
+This installs to `~/.agents/skills/compact-chat` and copies to the right directory for your agent.
+
+---
+
+### Cursor
+
+**Option A — via Settings (native import)**
 
 1. Open **Cursor Settings** → **Rules**
 2. Click **+ Add Rule** → **Remote Rule (GitHub)**
 3. Paste: `https://github.com/douglac/compact-chat`
 
+**Option B — manual**
+
+```bash
+mkdir -p ~/.cursor/skills/compact-chat
+curl -o ~/.cursor/skills/compact-chat/SKILL.md \
+  https://raw.githubusercontent.com/douglac/compact-chat/main/SKILL.md
+```
+
+After installing, type `/compact-chat` or just say "compact" in any Agent chat.
+
+---
+
 ### Claude Code
+
+**Option A — via `npx skills`**
+
+```bash
+npx skills add douglac/compact-chat --agent claude-code
+```
+
+**Option B — manual**
 
 ```bash
 mkdir -p ~/.claude/skills/compact-chat
@@ -86,19 +112,17 @@ curl -o ~/.claude/skills/compact-chat/SKILL.md \
   https://raw.githubusercontent.com/douglac/compact-chat/main/SKILL.md
 ```
 
-### Manual (any agent)
+After installing, invoke with `/compact-chat` or just say "compact" in any session. Claude Code auto-discovers skills from `~/.claude/skills/` — no extra config needed.
+
+**Option C — project-level (share with your team)**
 
 ```bash
-# Global (all projects)
-mkdir -p ~/.cursor/skills/compact-chat
-curl -o ~/.cursor/skills/compact-chat/SKILL.md \
-  https://raw.githubusercontent.com/douglac/compact-chat/main/SKILL.md
-
-# Project-level
-mkdir -p .cursor/skills/compact-chat
-curl -o .cursor/skills/compact-chat/SKILL.md \
+mkdir -p .claude/skills/compact-chat
+curl -o .claude/skills/compact-chat/SKILL.md \
   https://raw.githubusercontent.com/douglac/compact-chat/main/SKILL.md
 ```
+
+Commit to git and everyone on the team gets it.
 
 ---
 
